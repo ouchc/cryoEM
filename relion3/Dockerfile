@@ -29,7 +29,7 @@ WORKDIR /usr/local/src
 RUN git clone https://github.com/3dem/relion.git
 WORKDIR relion/build
 # cuda compute capability (without decimal point)
-ARG 61
+ARG sm_61
 RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/local/relion3 -DCUDA_ARCH=$compute_capability .. \
  && make -j $(grep -c processor /proc/cpuinfo) \
  && make install \
