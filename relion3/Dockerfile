@@ -24,10 +24,10 @@ RUN ./configure --prefix=/usr/local \
  && make install \
  && ldconfig
 
-# install relion3
+# install relion3 - current stable release
 WORKDIR /usr/local/src
-RUN git clone https://bitbucket.org/scheres/relion-3.0_beta.git
-WORKDIR relion-3.0_beta/build
+RUN git clone https://github.com/3dem/relion.git
+WORKDIR relion-3.0/build
 # cuda compute capability (without decimal point)
 ARG compute_capability
 RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/local/relion3 -DCUDA_ARCH=$compute_capability .. \
@@ -35,12 +35,12 @@ RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/local/relion3 -DCUDA_ARCH=$compute_capabil
  && make install \
  && echo PATH="/usr/local/relion3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" > /etc/environment
 
-# install ctffind4
-RUN curl http://grigoriefflab.janelia.org/sites/default/files/ctffind-4.1.10-linux64.tar.gz | tar xvz -C /usr/local/
+# install ctffind4 - version 4.1.13
+RUN curl http://grigoriefflab.janelia.org/sites/default/files/ctffind-4.1.13-linux64.tar.gz | tar xvz -C /usr/local/
 
 WORKDIR /usr/local/bin
-# install MotionCor2_1.2.1-Cuda92
-COPY --chown=root:root ./MotionCor2_1.2.1-Cuda92 /usr/local/bin
+# install MotionCor2_1.3.0-Cuda92
+COPY --chown=root:root ./MotionCor2_1.3.0-Cuda92 /usr/local/bin
 
 #WORKDIR /usr/local/bin
 #RUN curl -OJ http://msg.ucsf.edu/MotionCor2/MotionCor2_1.2.1.zip \
