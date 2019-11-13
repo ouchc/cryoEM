@@ -27,7 +27,7 @@ RUN ./configure --prefix=/usr/local \
 # install relion3 - current stable release
 WORKDIR /usr/local/src
 RUN git clone https://github.com/3dem/relion.git
-WORKDIR relion-3.0/build
+WORKDIR relion/build
 # cuda compute capability (without decimal point)
 ARG compute_capability
 RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/local/relion3 -DCUDA_ARCH=$compute_capability .. \
