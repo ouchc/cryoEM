@@ -37,8 +37,8 @@ RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/local/relion3 -DCUDA_ARCH=61 .. \
 
 # install ctffind4 - version 4.1.10
 #RUN curl http://grigoriefflab.janelia.org/sites/default/files/ctffind-4.1.13-linux64.tar.gz | tar xvz -C /usr/local/
-COPY --chown=root:root ./ctffind /usr/local/bin
-COPY --chown=root:root ./ctffind_plot_results.sh /usr/local/bin
+COPY --chown=root:root ./ctffind-4.1.10-linux64.tar.gz /usr/local/bin
+RUN tar xvz -C /usr/local
 
 WORKDIR /usr/local/bin
 # install MotionCor2_1.3.0-Cuda92
