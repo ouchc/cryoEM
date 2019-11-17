@@ -28,7 +28,7 @@ RUN ./configure --prefix=/usr/local \
 WORKDIR /usr/local/src
 RUN git clone https://github.com/3dem/relion.git
 # Fix for MPI error https://github.com/3dem/relion/issues/234
-RUN sed -i "s/MPI_DOUBLE_COMPLEX/MPI_C_DOUBLE_COMPLEX/g" src/macros.h
+RUN sed -i "s/MPI_DOUBLE_COMPLEX/MPI_C_DOUBLE_COMPLEX/g" relion/src/macros.h
 WORKDIR relion/build
 # cuda compute capability (without decimal point)
 # ARG compute_capability
