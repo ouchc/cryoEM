@@ -27,6 +27,8 @@ RUN ./configure --prefix=/usr/local \
 # install relion3 - current stable release
 WORKDIR /usr/local/src
 RUN git clone https://github.com/3dem/relion.git
+# Fix for MPI error https://github.com/3dem/relion/issues/234
+sed -i "s/MPI_DOUBLE_COMPLEX/MPI_C_DOUBLE_COMPLEX/g" src/macros.h
 WORKDIR relion/build
 # cuda compute capability (without decimal point)
 # ARG compute_capability
