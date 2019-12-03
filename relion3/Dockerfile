@@ -1,5 +1,8 @@
-FROM nvidia/cuda:9.2-devel-ubuntu16.04
+# update to cuda 10.0 and use ubuntu18.04 as a base
+# FROM nvidia/cuda:9.2-devel-ubuntu16.04
+FROM nvidia/cuda:10.0-devel-ubuntu18.04
 
+# Add libglu1-mesa for Imod
 RUN apt update && apt install -y \
     build-essential \
     cmake \
@@ -12,6 +15,7 @@ RUN apt update && apt install -y \
     libtiff5-dev \
     unzip \
     xorg-dev \
+    libglu1-mesa \
  && rm -rf /var/lib/apt/lists/*
 
 # install openmpi from source
@@ -37,10 +41,10 @@ RUN cmake -DCMAKE_INSTALL_PREFIX=/usr/local/relion3 -DCUDA_ARCH=61 .. \
  && make install \
  && echo PATH="/usr/local/relion3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" > /etc/environment
 
-# install ctffind4 - version 4.1.10
+# update to ctffind4 - version 4.1.13
 #RUN curl http://grigoriefflab.janelia.org/sites/default/files/ctffind-4.1.13-linux64.tar.gz | tar xvz -C /usr/local/
-COPY --chown=root:root ./ctffind-4.1.10-linux64.tar.gz /usr/local/bin
-RUN tar xvf /usr/local/bin/ctffind-4.1.10-linux64.tar.gz -C /usr/local
+COPY --chown=root:root ./ctffind-4.1.13-linux64.tar.gz /usr/local/bin
+RUN tar xvf /usr/local/bin/ctffind-4.1.13-linux64.tar.gz -C /usr/local
 
 WORKDIR /usr/local/bin
 # install MotionCor2_1.3.0-Cuda92
