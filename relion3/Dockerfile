@@ -1,6 +1,6 @@
 # update to cuda 10.0 and use ubuntu18.04 as a base
-# FROM nvidia/cuda:9.2-devel-ubuntu16.04
-FROM nvidia/cuda:10.0-devel-ubuntu18.04
+# Keep cuda and ubuntu version the same as to minimize disk space
+FROM nvidia/cuda:9.2-devel-ubuntu16.04
 
 # Add libglu1-mesa for Imod
 RUN apt update && apt install -y \
@@ -15,7 +15,6 @@ RUN apt update && apt install -y \
     libtiff5-dev \
     unzip \
     xorg-dev \
-    libglu1-mesa \
  && rm -rf /var/lib/apt/lists/*
 
 # install openmpi from source
