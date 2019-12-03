@@ -49,6 +49,7 @@ RUN tar xvf /usr/local/bin/ctffind-4.1.13-linux64.tar.gz -C /usr/local
 WORKDIR /usr/local/bin
 # install MotionCor2_1.3.0-Cuda92
 COPY --chown=root:root ./MotionCor2_1.3.0-Cuda92 /usr/local/bin
+RUN chmod 755 /usr/local/bin/MotionCor2_1.3.0-Cuda92
 
 #WORKDIR /usr/local/bin
 #RUN curl -OJ http://msg.ucsf.edu/MotionCor2/MotionCor2_1.2.1.zip \
